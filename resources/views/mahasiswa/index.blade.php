@@ -1,9 +1,15 @@
 @extends('layouts.layout')
 @section('form_table')
-    <h1>Daftar Mahasiswa</h1>
+    <div class="flex w-full justify-between items-start border-b-2 border-white pb-4 mt-4 mb-6">
+        <h1 class="font-bold text-4xl text-slate-200">Mahasiswa Terdaftar</h1>
+        <a href="{{ route('mahasiswa.register') }}"
+        class="bg-blue-400 hover:bg-blue-300 transition duration-300 ease-in-out text-white font-semibold rounded-lg text-lg px-4 py-2 text-center">
+            <i class="fa-solid fa-plus"></i>
+        Regist</a>
+    </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg my-3">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="ext-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-slate-300">
+            <thead class="ext-xs uppercase bg-white bg-opacity-25 text-slate-300">
                 <tr>
                     <th scope="col" class="px-6 py-3">No</th>
                     <th scope="col" class="px-6 py-3">Name</th>
@@ -18,7 +24,7 @@
             </thead>
             <tbody>
                 @foreach ($mahasiswa as $mhs)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white bg-opacity-20 text-slate-300 font-semibold border-b dark:border-gray-700 hover:bg-white hover:bg-opacity-50">
                     <td class="px-6 py-4">{{ $mhs->id }}</td>
                     <td class="px-6 py-4">{{ $mhs->name }}</td>
                     <td class="px-6 py-4">{{ $mhs->email }}</td>

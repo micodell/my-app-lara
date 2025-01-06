@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mahasiswa</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 p-3 bg-blue-200 sticky-top">
-                <h1 class="mx-3">Welcome</h1>
-            </div>
-            <div class="row">
-                <div class="col-md-10 border border-dark mx-3">
-                    @yield('form_table')
-                </div>
-                @yield('form_register')
-            </div>
+<body class="bg-gradient-to-b from-[#00337C] to-blue-400 w-screen min-h-screen overflow-x-hidden">
+    @include('includes.header')
+
+    <div class="flex items-center justify-center text-slate-300">
+        <div class="row mt-10">
+            @yield('form_register')
+            @yield('form_table')
         </div>
     </div>
 </body>
