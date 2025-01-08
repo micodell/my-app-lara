@@ -13,6 +13,7 @@
         <div class="row mt-10">
             @yield('form_register')
             @yield('form_table')
+            @yield('form_edit')
         </div>
     </div>
 </body>

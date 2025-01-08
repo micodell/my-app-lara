@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('form_table')
     <div class="flex w-full justify-between items-start border-b-2 border-white pb-4 mt-4 mb-6">
-        <h1 class="font-bold text-4xl text-slate-200">Mahasiswa Terdaftar</h1>
+        <h1 class="font-bold text-3xl text-slate-200">Mahasiswa Terdaftar</h1>
         <a href="{{ route('mahasiswa.register') }}"
-        class="bg-blue-400 hover:bg-blue-300 transition duration-300 ease-in-out text-white font-semibold rounded-lg text-lg px-4 py-2 text-center">
+        class="bg-blue-400 hover:bg-blue-300 transition duration-300 ease-in-out text-white font-semibold rounded-lg text-md px-4 py-2.5 text-center">
             <i class="fa-solid fa-plus"></i>
         Regist</a>
     </div>
@@ -20,11 +20,12 @@
                     <th scope="col" class="px-6 py-3">GPA</th>
                     <th scope="col" class="px-6 py-3">Created at</th>
                     <th scope="col" class="px-6 py-3">Updated at</th>
+                    <th scope="col" class="px-6 py-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($mahasiswa as $mhs)
-                <tr class="bg-white bg-opacity-20 text-slate-300 font-semibold border-b dark:border-gray-700 hover:bg-white hover:bg-opacity-50">
+                <tr class="bg-white bg-opacity-20 text-slate-300 font-semibold border-b hover:bg-white hover:bg-opacity-50 hover:text-slate-600">
                     <td class="px-6 py-4">{{ $mhs->id }}</td>
                     <td class="px-6 py-4">{{ $mhs->name }}</td>
                     <td class="px-6 py-4">{{ $mhs->email }}</td>
@@ -34,6 +35,21 @@
                     <td class="px-6 py-4">{{ $mhs->gpa }}</td>
                     <td class="px-6 py-4">{{ $mhs->created_at }}</td>
                     <td class="px-6 py-4">{{ $mhs->updated_at }}</td>
+                    <td class="px-6 py-4">
+                        <div class="flex gap-2">
+                            <a href="{{ url('mahasiswa/edit/' . $mhs->id) }}" 
+                            class="bg-yellow-400 hover:bg-yellow-300 transition duration-300 ease-in-out text-white font-semibold rounded-lg text-md px-4 py-2 text-center updateButton"
+                            data-id="{{ $mhs->id }}">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="{{ url('mahasiswa/delete/' . $mhs->id) }}" 
+                            class="bg-red-500 hover:bg-red-400 transition duration-300 ease-in-out text-white font-semibold rounded-lg text-md px-4 py-2 text-center deleteButton"
+                            data-id="{{ $mhs->id }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                        
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

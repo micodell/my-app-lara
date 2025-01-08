@@ -30,7 +30,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $mahasiswa = new Mahasiswa();
-        $route = 'mahasiswa.register';
+        $route = 'mahasiswa.index';
 
         $mahasiswa->name = $request->name;
         $mahasiswa->email = $request->email;
@@ -40,7 +40,7 @@ class MahasiswaController extends Controller
         $mahasiswa->gpa = $request->gpa;
         $mahasiswa->save();
 
-        return redirect()->route($route);
+        return redirect()->route($route)->with('success', 'Added Successfully');
     }
 
     /**
@@ -54,24 +54,42 @@ class MahasiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    // public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        $mahasiswa = Mahasiswa::where('id', $request->id)->first();
+        return view('mahasiswa.edit')->with('mhs', $mahasiswa);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    // public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $mahasiswa = Mahasiswa::where('id', $request->id)->first();
+        // $mahasiswa = Mahasiswa::findOrFail($id);
+        $route = 'mahasiswa.index';
+
+        $mahasiswa->name = $request->name;
+        $mahasiswa->email = $request->email;
+        $mahasiswa->birthdate = $request->birthdate;
+        $mahasiswa->no_ktp = $request->no_ktp;
+        $mahasiswa->school_name = $request->school_name;
+        $mahasiswa->gpa = $request->gpa;
+        $mahasiswa->save();
+
+        return redirect()->route($route)->with('success', 'Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    // public function destroy(string $id)
+    public function delete(Request $request)
     {
-        //
+        $mahasiswa = Mahasiswa::where('id', $request->id)->first();
+        $mahasiswa->delete();
+        return redirect()->route('mahasiswa.index');
     }
 }
