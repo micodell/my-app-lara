@@ -55,5 +55,28 @@
             Back</a>
         </div>
     </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const birthdate = document.getElementById('birthdate').value;
+            if (!birthdate) {
+                alert('Birthdate is required!');
+                event.preventDefault();
+            }
+        });
+
+        document.getElementById('registButton').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            document.querySelector('form').submit();
+
+            Swal.fire({
+                icon: "success",
+                title: "Added Successfully",
+                showConfirmButton: false,
+                timer: 1000
+            });
+        });
+    </script>
     
 @endsection

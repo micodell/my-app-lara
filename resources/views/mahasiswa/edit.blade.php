@@ -50,7 +50,7 @@
                                 value="{{ $mhs->gpa }}">
                         </div>
                     </div>
-                    <button type="submit" id="updateButton" class="bg-[#00337C] text-white p-2 rounded-lg font-semibold w-full hover:bg-blue-600 focus:outline-none ring-2 focus:ring-0 ring-[#293685] hover:ring-blue-600 focus:ring-offset-0 mt-4">Update</button>
+                    <button type="submit" id="updateButton" data-id="{{ $mhs->id }}" class="bg-[#00337C] text-white p-2 rounded-lg font-semibold w-full hover:bg-blue-600 focus:outline-none ring-2 focus:ring-0 ring-[#293685] hover:ring-blue-600 focus:ring-offset-0 mt-4">Update</button>
                     <!-- buat sweetalert kemudian direct ke /mahasiswa untuk lihat table. lebih bagus jika langsung update tanpa perlu refresh -->
                 </div>
             </form>
@@ -62,5 +62,32 @@
             Back</a>
         </div>
     </div>
+
+    <script>
+        document.getElementById('updateButton').addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log('Button clicked', this);
+            const mhsId = this.getAttribute('data-id');
+                
+                Swal.fire({
+                    title: "Update with this new record of mahasiswa " + mhsId + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, I want to update!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.querySelector('form').submit();
+                        Swal.fire({
+                            title: "Record mahasiswa " + mhsId + " updated successfully",
+                            icon: "success",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+                    }
+                });
+        });
+    </script>
     
 @endsection

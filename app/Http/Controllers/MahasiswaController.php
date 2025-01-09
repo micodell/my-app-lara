@@ -40,7 +40,7 @@ class MahasiswaController extends Controller
         $mahasiswa->gpa = $request->gpa;
         $mahasiswa->save();
 
-        return redirect()->route($route)->with('success', 'Added Successfully');
+        return redirect()->route($route);
     }
 
     /**
@@ -65,7 +65,7 @@ class MahasiswaController extends Controller
      * Update the specified resource in storage.
      */
     // public function update(Request $request, string $id)
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $mahasiswa = Mahasiswa::where('id', $request->id)->first();
         // $mahasiswa = Mahasiswa::findOrFail($id);
@@ -79,7 +79,7 @@ class MahasiswaController extends Controller
         $mahasiswa->gpa = $request->gpa;
         $mahasiswa->save();
 
-        return redirect()->route($route)->with('success', 'Updated Successfully');
+        return redirect()->route($route);
     }
 
     /**
